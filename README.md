@@ -1,6 +1,12 @@
 # 🚢 Titanic Survival Predictor Web App
 
-A fun and interactive web application that predicts whether you would have survived the Titanic disaster based on your passenger profile. Built with Flask and machine learning using your optimized Decision Tree model.
+A fun and interactive web application that predicts whether you would have survived the Titanic disaster based on your passenger profile. Built with Flask and machine learning using your optimized Random Forest model.
+
+## 🏆 Kaggle Competition Results
+
+**Score: 0.77751** on the Kaggle leaderboard - using Random Forest Classification
+
+[![Star on GitHub](https://img.shields.io/github/stars/YOUR_USERNAME/titanic-survival-predictor?style=social)](https://github.com/YOUR_USERNAME/titanic-survival-predictor)
 
 ## ✨ Features
 
@@ -59,11 +65,12 @@ A fun and interactive web application that predicts whether you would have survi
 
 ## 🧠 Machine Learning Model
 
-The app uses a **Decision Tree Classifier** with optimized hyperparameters:
-- **Algorithm**: Decision Tree with Gini criterion
+The app uses a **Random Forest Classifier** with optimized hyperparameters:
+- **Algorithm**: Random Forest with Gini criterion
+- **N Estimators**: 100 trees
 - **Max Depth**: 5 levels
 - **Min Samples Split**: 3
-- **Accuracy**: ~72% on test data
+- **Kaggle Score**: 0.77751 (top 25% performance)
 
 ### Features Used:
 - Passenger Class (Pclass)
@@ -190,6 +197,22 @@ This project demonstrates:
 - **Historical Data**: Titanic passenger records
 - **UI Design**: Modern web design principles
 
+## ⭐ Support This Project
+
+If you find this project helpful or interesting, please consider giving it a star on GitHub!
+
+[![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/titanic-survival-predictor?style=for-the-badge&logo=github)](https://github.com/YOUR_USERNAME/titanic-survival-predictor)
+
+**🚀 [View on GitHub](https://github.com/YOUR_USERNAME/titanic-survival-predictor)**
+
+### Ways to Support:
+- ⭐ **Star the repository** on GitHub
+- 🍴 **Fork it** and contribute improvements
+- 🐛 **Report bugs** or suggest features
+- 📢 **Share it** with others interested in data science
+
 ---
 
 **Enjoy exploring your fate aboard the Titanic! 🚢⚓**
+
+*Kaggle Score: 0.77751 | Random Forest Classification | Interactive Web App*

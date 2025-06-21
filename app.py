@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 import pickle
 import os
@@ -25,8 +25,9 @@ def load_and_train_model():
     X = train_data.drop(columns=['Survived'], axis=1)
     y = train_data['Survived']
     
-    # Train the model with the best parameters from your grid search
-    model = DecisionTreeClassifier(
+    # Train the model using Random Forest (achieved 0.77751 Kaggle score)
+    model = RandomForestClassifier(
+        n_estimators=100,
         criterion='gini', 
         max_depth=5, 
         min_samples_split=3, 
