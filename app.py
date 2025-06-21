@@ -39,23 +39,27 @@ def load_and_train_model():
     return model, X.columns.tolist()
 
 # Load the model
-model, feature_columns = load_and_train_model()
+model, _ = load_and_train_model()
 
 def preprocess_user_input(user_data):
     """Preprocess user input to match the training data format"""
     # Create a DataFrame with the user input
     df = pd.DataFrame([user_data])
     
-    # One-hot encode Sex and Embarked
-    df = pd.get_dummies(df, columns=['Sex', 'Embarked'], drop_first=True)
+    # Manually create one-hot encoded columns to match training data
+    # Sex encoding: Sex_male (1 if male, 0 if female)
+    df['Sex_male'] = 1 if user_data['Sex'] == 'male' else 0
     
-    # Ensure all required columns are present
-    for col in feature_columns:
-        if col not in df.columns:
-            df[col] = 0
+    # Embarked encoding: Embarked_Q and Embarked_S (drop_first=True removes Embarked_C)
+    df['Embarked_Q'] = 1 if user_data['Embarked'] == 'Q' else 0
+    df['Embarked_S'] = 1 if user_data['Embarked'] == 'S' else 0
     
-    # Reorder columns to match training data
-    df = df[feature_columns]
+    # Remove original categorical columns
+    df = df.drop(columns=['Sex', 'Embarked'])
+    
+    # Ensure all required columns are present in correct order
+    feature_order = ['Pclass', 'Age', 'SibSp', 'Parch', 'Fare', 'Sex_male', 'Embarked_Q', 'Embarked_S']
+    df = df[feature_order]
     
     return df
 
