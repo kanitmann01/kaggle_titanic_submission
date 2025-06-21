@@ -63,4 +63,9 @@ Your Titanic Survival Predictor now features:
 
 **Sometimes the original design really is the best design!** 🚢
 
+### ⚓ **Latest Updates**
+- ✅ **Ship animation fixed** - now has realistic rocking motion instead of spinning
+- ✅ **Professional favicon added** - ship icon displays in browser tabs
+- ✅ **Enhanced visual polish** while maintaining the clean original design
+
 Your app is now back to its clean, simple, and effective original state - fast, beautiful, and ready for production! 🎉
