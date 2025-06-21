@@ -11,20 +11,32 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #0066ff;
-            --light-blue: #e8f4ff;
-            --navy: #1a237e;
-            --ocean: #006064;
-            --white: #ffffff;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-600: #475569;
-            --gray-900: #0f172a;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warning: #f59e0b;
+            /* Neumorphic Color Palette */
+            --bg-primary: #e6e7ee;
+            --bg-secondary: #f0f1f7;
+            --surface: #e6e7ee;
+            --surface-light: #ffffff;
+            --surface-dark: #d1d5db;
+            
+            /* Text Colors */
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            
+            /* Accent Colors */
+            --accent-blue: #4299e1;
+            --accent-blue-dark: #3182ce;
+            --accent-green: #48bb78;
+            --accent-red: #f56565;
+            --accent-orange: #ed8936;
+            
+            /* Neumorphic Shadows */
+            --shadow-light: #ffffff;
+            --shadow-dark: rgba(163, 177, 198, 0.6);
+            --shadow-inset-light: inset 2px 2px 5px var(--shadow-dark);
+            --shadow-inset-dark: inset -2px -2px 5px var(--shadow-light);
+            --shadow-raised: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+            --shadow-pressed: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
         }
 
         * {
@@ -32,166 +44,272 @@
         }
 
         body {
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--gray-50) 100%);
+            background: var(--bg-primary);
             min-height: 100vh;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--gray-900);
+            color: var(--text-primary);
             line-height: 1.6;
             margin: 0;
             padding: 0;
         }
         
+        .container {
+            max-width: 650px;
+            padding: 2rem 1rem;
+        }
+        
         .ship-container {
-            background: var(--white);
-            border-radius: 16px;
-            box-shadow: 
-                0 4px 6px -1px rgba(0, 0, 0, 0.1),
-                0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 1px solid var(--gray-200);
+            background: var(--surface);
+            border-radius: 24px;
+            box-shadow: var(--shadow-raised);
             overflow: hidden;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
         }
         
         .ship-container:hover {
+            transform: translateY(-2px);
             box-shadow: 
-                0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                12px 12px 24px var(--shadow-dark), 
+                -12px -12px 24px var(--shadow-light);
         }
         
         .ship-header {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--ocean) 100%);
-            color: var(--white);
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-dark) 100%);
+            color: var(--surface-light);
             padding: 2rem 1.5rem;
             text-align: center;
             position: relative;
+            box-shadow: 
+                inset 2px 2px 8px rgba(255, 255, 255, 0.2),
+                inset -2px -2px 8px rgba(0, 0, 0, 0.2);
         }
         .ship-icon {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
-            color: rgba(255, 255, 255, 0.9);
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            color: var(--surface-light);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
         
         h1.display-4 {
             font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         
         .lead {
             font-size: 1.1rem;
-            opacity: 0.9;
+            opacity: 0.95;
+            font-weight: 500;
         }
         
-        /* Clean Form Controls */
+        /* Neumorphic Form Controls */
         .form-control, .form-select {
-            background: var(--white);
-            border: 2px solid var(--gray-200);
-            border-radius: 12px;
-            padding: 12px 16px;
+            background: var(--surface);
+            border: none;
+            border-radius: 16px;
+            padding: 14px 18px;
             font-size: 1rem;
             font-weight: 500;
-            color: var(--gray-900);
-            transition: all 0.15s ease;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-pressed);
+            margin-bottom: 1rem;
         }
         
         .form-control::placeholder {
-            color: var(--gray-600);
+            color: var(--text-muted);
             font-weight: 400;
         }
         
         .form-control:focus, .form-select:focus {
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
             outline: none;
-            transform: translateY(-1px);
+            box-shadow: 
+                inset 2px 2px 8px var(--shadow-dark),
+                inset -2px -2px 8px var(--shadow-light),
+                0 0 0 4px rgba(66, 153, 225, 0.1);
+            transform: scale(1.02);
+        }
+        
+        .form-control:hover, .form-select:hover {
+            box-shadow: 
+                inset 3px 3px 6px var(--shadow-dark),
+                inset -3px -3px 6px var(--shadow-light);
         }
         
         .form-label {
-            color: var(--gray-900);
+            color: var(--text-primary);
             font-weight: 600;
-            margin-bottom: 6px;
-            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        /* Modern Buttons */
+        /* Neumorphic Buttons */
         .btn-predict, .btn-primary {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--ocean) 100%);
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-dark) 100%);
             border: none;
-            border-radius: 12px;
-            padding: 12px 24px;
+            border-radius: 16px;
+            padding: 14px 28px;
             font-weight: 600;
-            color: var(--white);
-            font-size: 1rem;
-            transition: all 0.15s ease;
-            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+            color: var(--surface-light);
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-raised);
             position: relative;
-            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
         }
         
         .btn-predict:hover, .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
-            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 
+                12px 12px 24px var(--shadow-dark),
+                -12px -12px 24px var(--shadow-light);
+            color: var(--surface-light);
         }
         
         .btn-predict:active, .btn-primary:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-pressed);
         }
         
         .btn-outline-light {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 10px;
-            color: var(--white);
-            font-weight: 500;
-            padding: 8px 16px;
+            background: var(--surface);
+            border: none;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-weight: 600;
+            padding: 10px 18px;
             font-size: 0.9rem;
-            transition: all 0.15s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                4px 4px 8px var(--shadow-dark),
+                -4px -4px 8px var(--shadow-light);
+            cursor: pointer;
         }
         
         .btn-outline-light:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.6);
-            color: var(--white);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 
+                6px 6px 12px var(--shadow-dark),
+                -6px -6px 12px var(--shadow-light);
+            color: var(--text-primary);
         }
-        /* Ship Animation */
+        
+        .btn-outline-light:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow-pressed);
+        }
+        /* Ship Animation - Smooth & Intuitive */
         .ship-rock {
-            animation: shipRock 3s ease-in-out infinite;
-            transform-origin: center bottom;
+            animation: shipFloat 4s ease-in-out infinite;
+            transform-origin: center center;
             will-change: transform;
         }
         
-        @keyframes shipRock {
-            0%, 100% { transform: rotate(-6deg); }
-            50% { transform: rotate(6deg); }
+        @keyframes shipFloat {
+            0%, 100% { transform: rotate(-4deg) translateY(0px); }
+            25% { transform: rotate(-2deg) translateY(-2px); }
+            50% { transform: rotate(4deg) translateY(0px); }
+            75% { transform: rotate(2deg) translateY(-1px); }
         }
         
-        /* Optimized Spacing */
-        .container {
-            max-width: 700px;
+        /* Content Area */
+        .content-area {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 
+                inset 4px 4px 8px var(--shadow-dark),
+                inset -4px -4px 8px var(--shadow-light);
         }
         
-        .p-4 {
-            padding: 1.5rem !important;
+        /* Neumorphic Cards */
+        .neuro-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-raised);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .neuro-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                12px 12px 24px var(--shadow-dark),
+                -12px -12px 24px var(--shadow-light);
+        }
+        
+        /* Form Groups */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* GitHub Button Specific */
+        .github-btn {
+            background: var(--surface);
+            border: none;
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                3px 3px 6px var(--shadow-dark),
+                -3px -3px 6px var(--shadow-light);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .github-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 
+                4px 4px 8px var(--shadow-dark),
+                -4px -4px 8px var(--shadow-light);
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        /* Score Badge */
+        .score-badge {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            box-shadow: 
+                inset 2px 2px 4px var(--shadow-dark),
+                inset -2px -2px 4px var(--shadow-light);
+            margin-top: 0.5rem;
+            display: inline-block;
         }
         
         /* Performance Optimizations */
-        .ship-container, .btn-predict, .btn-primary, .form-control, .form-select {
+        .ship-container, .btn-predict, .btn-primary, .form-control, .form-select, .neuro-card {
             will-change: transform, box-shadow;
         }
         
         /* Mobile Optimizations */
         @media (max-width: 768px) {
             .container {
-                padding: 1rem;
+                padding: 1rem 0.5rem;
             }
             
             .ship-header {
                 padding: 1.5rem 1rem;
+            }
+            
+            .content-area {
+                padding: 1.5rem;
             }
             
             h1.display-4 {
@@ -200,6 +318,26 @@
             
             .ship-icon {
                 font-size: 2rem;
+            }
+            
+            .btn-predict, .btn-primary {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            .form-control, .form-select {
+                padding: 12px 16px;
+            }
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .ship-rock {
+                animation: none;
+            }
+            
+            * {
+                transition: none !important;
             }
         }
     </style>
@@ -218,21 +356,21 @@
                         <div class="mt-3">
                             <a href="https://github.com/kanitmann01/kaggle_titanic_submission" 
                                target="_blank" 
-                               class="btn btn-outline-light btn-sm">
-                                <i class="fab fa-github me-2"></i>
-                                ⭐ Star on GitHub
+                               class="github-btn">
+                                <i class="fab fa-github"></i>
+                                <span>⭐ Star on GitHub</span>
                             </a>
                         </div>
                         
-                        <!-- Kaggle Score Disclaimer -->
-                        <div class="mt-2">
-                            <small class="text-light opacity-75">
+                        <!-- Kaggle Score Badge -->
+                        <div class="mt-3">
+                            <div class="score-badge">
                                 <i class="fas fa-trophy me-1"></i>
-                                Score: 0.74401 on Kaggle leaderboard - using Random Forest Classification
-                            </small>
+                                Kaggle Score: 0.74401 • Random Forest ML
+                            </div>
                         </div>
                     </div>
-                    <div class="p-4">
+                    <div class="content-area">
                         {% block content %}{% endblock %}
                     </div>
                 </div>
