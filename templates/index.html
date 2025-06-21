@@ -6,7 +6,7 @@
     <p class="text-muted">Fill in the form below to discover your fate aboard the Titanic</p>
 </div>
 
-<form method="POST" action="/predict" class="needs-validation" novalidate>
+<form method="POST" action="/predict">
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="pclass" class="form-label">
@@ -104,7 +104,7 @@
 
 {% block scripts %}
 <script>
-// Bootstrap form validation
+// Bootstrap form validation - Fixed version
 (function() {
     'use strict';
     window.addEventListener('load', function() {
@@ -114,6 +114,9 @@
                 if (form.checkValidity() === false) {
                     event.preventDefault();
                     event.stopPropagation();
+                } else {
+                    // Form is valid, allow submission
+                    console.log('Form is valid, submitting...');
                 }
                 form.classList.add('was-validated');
             }, false);
@@ -122,16 +125,51 @@
 })();
 
 // Dynamic fare suggestions based on class
-document.getElementById('pclass').addEventListener('change', function() {
+document.addEventListener('DOMContentLoaded', function() {
+    const pclassSelect = document.getElementById('pclass');
     const fareInput = document.getElementById('fare');
-    const classValue = this.value;
     
-    if (classValue === '1') {
-        fareInput.placeholder = 'Typical range: £30-500';
-    } else if (classValue === '2') {
-        fareInput.placeholder = 'Typical range: £10-80';
-    } else if (classValue === '3') {
-        fareInput.placeholder = 'Typical range: £3-25';
+    if (pclassSelect && fareInput) {
+        pclassSelect.addEventListener('change', function() {
+            const classValue = this.value;
+            
+            if (classValue === '1') {
+                fareInput.placeholder = 'Typical range: £30-500';
+            } else if (classValue === '2') {
+                fareInput.placeholder = 'Typical range: £10-80';
+            } else if (classValue === '3') {
+                fareInput.placeholder = 'Typical range: £3-25';
+            }
+        });
+    }
+});
+
+// Debug form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const submitBtn = document.querySelector('button[type="submit"]');
+    
+    if (form && submitBtn) {
+        submitBtn.addEventListener('click', function(e) {
+            console.log('Submit button clicked');
+            
+            // Check if all required fields are filled
+            const requiredFields = form.querySelectorAll('[required]');
+            let allValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    console.log('Empty required field:', field.name);
+                    allValid = false;
+                }
+            });
+            
+            if (allValid) {
+                console.log('All fields valid, form should submit');
+            } else {
+                console.log('Some required fields are empty');
+            }
+        });
     }
 });
 </script>
