@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center">
+    <div class="alert alert-warning border-0 shadow-sm">
+        <h2 class="alert-heading">
+            <i class="fas fa-exclamation-triangle text-warning"></i>
+            Oops! Something went wrong
+        </h2>
+        <p class="mb-3">We encountered an error while processing your request.</p>
+        <hr>
+        <p class="mb-0">
+            <strong>Error details:</strong> {{ error }}
+        </p>
+    </div>
+    
+    <div class="mt-4">
+        <a href="/" class="btn btn-primary btn-lg">
+            <i class="fas fa-home me-2"></i>
+            Back to Home
+        </a>
+    </div>
+</div>
+{% endblock %}

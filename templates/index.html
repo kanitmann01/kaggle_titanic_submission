@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h2 class="text-primary">Enter Your Passenger Details</h2>
+    <p class="text-muted">Fill in the form below to discover your fate aboard the Titanic</p>
+</div>
+
+<form method="POST" action="/predict" class="needs-validation" novalidate>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="pclass" class="form-label">
+                <i class="fas fa-star text-warning"></i> Passenger Class
+            </label>
+            <select class="form-select" id="pclass" name="pclass" required>
+                <option value="">Choose your class...</option>
+                <option value="1">First Class 👑 (Upper class)</option>
+                <option value="2">Second Class 🎩 (Middle class)</option>
+                <option value="3">Third Class 👔 (Lower class)</option>
+            </select>
+            <div class="invalid-feedback">Please select a passenger class.</div>
+        </div>
+        
+        <div class="col-md-6 mb-3">
+            <label for="sex" class="form-label">
+                <i class="fas fa-user text-info"></i> Gender
+            </label>
+            <select class="form-select" id="sex" name="sex" required>
+                <option value="">Select gender...</option>
+                <option value="male">Male ♂️</option>
+                <option value="female">Female ♀️</option>
+            </select>
+            <div class="invalid-feedback">Please select your gender.</div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="age" class="form-label">
+                <i class="fas fa-birthday-cake text-success"></i> Age
+            </label>
+            <input type="number" class="form-control" id="age" name="age" min="1" max="100" required>
+            <div class="invalid-feedback">Please enter a valid age (1-100).</div>
+        </div>
+        
+        <div class="col-md-6 mb-3">
+            <label for="fare" class="form-label">
+                <i class="fas fa-dollar-sign text-warning"></i> Ticket Fare (£)
+            </label>
+            <input type="number" class="form-control" id="fare" name="fare" min="0" step="0.01" required>
+            <div class="invalid-feedback">Please enter the ticket fare.</div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label for="sibsp" class="form-label">
+                <i class="fas fa-heart text-danger"></i> Siblings/Spouse
+            </label>
+            <input type="number" class="form-control" id="sibsp" name="sibsp" min="0" max="10" value="0" required>
+            <small class="form-text text-muted">Number of siblings/spouses aboard</small>
+        </div>
+        
+        <div class="col-md-4 mb-3">
+            <label for="parch" class="form-label">
+                <i class="fas fa-baby text-primary"></i> Parents/Children
+            </label>
+            <input type="number" class="form-control" id="parch" name="parch" min="0" max="10" value="0" required>
+            <small class="form-text text-muted">Number of parents/children aboard</small>
+        </div>
+        
+        <div class="col-md-4 mb-3">
+            <label for="embarked" class="form-label">
+                <i class="fas fa-map-marker-alt text-info"></i> Port of Embarkation
+            </label>
+            <select class="form-select" id="embarked" name="embarked" required>
+                <option value="">Choose port...</option>
+                <option value="C">Cherbourg 🇫🇷</option>
+                <option value="Q">Queenstown 🇮🇪</option>
+                <option value="S">Southampton 🇬🇧</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary btn-predict btn-lg">
+            <i class="fas fa-crystal-ball me-2"></i>
+            Predict My Fate!
+        </button>
+    </div>
+</form>
+
+<div class="mt-5 p-4 bg-light rounded">
+    <h5 class="text-center mb-3">
+        <i class="fas fa-info-circle text-info"></i> Historical Context
+    </h5>
+    <p class="text-muted text-center mb-0">
+        The RMS Titanic sank on April 15, 1912, after hitting an iceberg. 
+        This predictor uses machine learning to analyze passenger data and estimate survival chances 
+        based on historical patterns from that tragic night.
+    </p>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Bootstrap form validation
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+
+// Dynamic fare suggestions based on class
+document.getElementById('pclass').addEventListener('change', function() {
+    const fareInput = document.getElementById('fare');
+    const classValue = this.value;
+    
+    if (classValue === '1') {
+        fareInput.placeholder = 'Typical range: £30-500';
+    } else if (classValue === '2') {
+        fareInput.placeholder = 'Typical range: £10-80';
+    } else if (classValue === '3') {
+        fareInput.placeholder = 'Typical range: £3-25';
+    }
+});
+</script>
+{% endblock %}
