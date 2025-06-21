@@ -10,7 +10,7 @@ This guide will help you set up your GitHub repository and update all the links 
 
 2. **Create Repository:**
    - **Repository name:** `titanic-survival-predictor`
-   - **Description:** `🚢 Titanic Survival Predictor - Interactive web app using Random Forest ML. Kaggle Score: 0.77751`
+   - **Description:** `🚢 Titanic Survival Predictor - Interactive web app using Random Forest ML. Kaggle Score: 0.74401`
    - **Visibility:** Public (recommended for showcasing)
    - **Don't initialize** with README, .gitignore, or license (we already have these files)
 
@@ -69,7 +69,7 @@ git add .
 git commit -m "🚢 Initial commit: Titanic Survival Predictor
 
 - Interactive Flask web app with Random Forest ML model
-- Achieved 0.77751 score on Kaggle leaderboard  
+- Achieved 0.74401 score on Kaggle leaderboard  
 - Beautiful UI with Bootstrap and Chart.js
 - Ready for deployment to Railway, Render, etc.
 - Complete documentation and deployment guides"

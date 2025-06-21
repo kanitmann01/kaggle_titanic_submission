@@ -4,7 +4,7 @@ A fun and interactive web application that predicts whether you would have survi
 
 ## 🏆 Kaggle Competition Results
 
-**Score: 0.77751** on the Kaggle leaderboard - using Random Forest Classification
+**Score: 0.74401** on the Kaggle leaderboard - using Random Forest Classification
 
 [![Star on GitHub](https://img.shields.io/github/stars/YOUR_USERNAME/titanic-survival-predictor?style=social)](https://github.com/YOUR_USERNAME/titanic-survival-predictor)
 
@@ -70,7 +70,7 @@ The app uses a **Random Forest Classifier** with optimized hyperparameters:
 - **N Estimators**: 100 trees
 - **Max Depth**: 5 levels
 - **Min Samples Split**: 3
-- **Kaggle Score**: 0.77751 (top 25% performance)
+- **Kaggle Score**: 0.74401 (solid performance)
 
 ### Features Used:
 - Passenger Class (Pclass)
@@ -215,4 +215,4 @@ If you find this project helpful or interesting, please consider giving it a sta
 
 **Enjoy exploring your fate aboard the Titanic! 🚢⚓**
 
-*Kaggle Score: 0.77751 | Random Forest Classification | Interactive Web App*
+*Kaggle Score: 0.74401 | Random Forest Classification | Interactive Web App*

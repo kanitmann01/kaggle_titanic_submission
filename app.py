@@ -25,7 +25,7 @@ def load_and_train_model():
     X = train_data.drop(columns=['Survived'], axis=1)
     y = train_data['Survived']
     
-    # Train the model using Random Forest (achieved 0.77751 Kaggle score)
+    # Train the model using Random Forest (achieved 0.74401 Kaggle score)
     model = RandomForestClassifier(
         n_estimators=100,
         criterion='gini', 
