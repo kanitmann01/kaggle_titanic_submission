@@ -4,167 +4,203 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Titanic Survival Predictor{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-blue: #0066ff;
+            --light-blue: #e8f4ff;
+            --navy: #1a237e;
+            --ocean: #006064;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-600: #475569;
+            --gray-900: #0f172a;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--gray-50) 100%);
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            overflow-x: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--gray-900);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
         
-        /* Apple Glassmorphic Design */
         .ship-container {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px;
+            background: var(--white);
+            border-radius: 16px;
             box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.1),
-                0 4px 16px rgba(0, 0, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            position: relative;
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--gray-200);
             overflow: hidden;
+            transition: all 0.2s ease;
         }
         
-        .ship-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        .ship-container:hover {
+            box-shadow: 
+                0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         
         .ship-header {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 24px 24px 0 0;
-            padding: 2.5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--ocean) 100%);
+            color: var(--white);
+            padding: 2rem 1.5rem;
             text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .ship-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-            pointer-events: none;
         }
         .ship-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #3498db;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         }
-        /* Glassmorphic Form Controls */
+        
+        h1.display-4 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .lead {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Clean Form Controls */
         .form-control, .form-select {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 16px;
-            padding: 14px 18px;
-            color: #2c3e50;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 1rem;
             font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--gray-900);
+            transition: all 0.15s ease;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
         }
         
         .form-control::placeholder {
-            color: rgba(44, 62, 80, 0.6);
+            color: var(--gray-600);
+            font-weight: 400;
         }
         
         .form-control:focus, .form-select:focus {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(52, 152, 219, 0.5);
-            box-shadow: 
-                0 0 0 3px rgba(52, 152, 219, 0.1),
-                0 4px 16px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
             outline: none;
+            transform: translateY(-1px);
         }
         
         .form-label {
-            color: #2c3e50;
+            color: var(--gray-900);
             font-weight: 600;
-            margin-bottom: 8px;
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+            margin-bottom: 6px;
+            font-size: 0.9rem;
         }
         
-        /* Glassmorphic Buttons */
+        /* Modern Buttons */
         .btn-predict, .btn-primary {
-            background: rgba(52, 152, 219, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(52, 152, 219, 0.3);
-            border-radius: 16px;
-            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--ocean) 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: white;
-            transition: all 0.3s ease;
-            box-shadow: 
-                0 4px 16px rgba(52, 152, 219, 0.3),
-                0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.15s ease;
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
             position: relative;
             overflow: hidden;
         }
         
-        .btn-predict::before, .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-            pointer-events: none;
+        .btn-predict:hover, .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+            color: var(--white);
         }
         
-        .btn-predict:hover, .btn-primary:hover {
-            background: rgba(52, 152, 219, 0.9);
-            transform: translateY(-3px);
-            box-shadow: 
-                0 8px 24px rgba(52, 152, 219, 0.4),
-                0 4px 16px rgba(0, 0, 0, 0.15);
+        .btn-predict:active, .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
         }
         
         .btn-outline-light {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            color: var(--white);
             font-weight: 500;
-            transition: all 0.3s ease;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            transition: all 0.15s ease;
         }
         
         .btn-outline-light:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-            color: white;
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.6);
+            color: var(--white);
+            transform: translateY(-1px);
         }
+        /* Ship Animation */
         .ship-rock {
-            animation: shipRock 4s ease-in-out infinite;
+            animation: shipRock 3s ease-in-out infinite;
             transform-origin: center bottom;
+            will-change: transform;
         }
+        
         @keyframes shipRock {
-            0%, 100% { transform: rotate(-8deg); }
-            50% { transform: rotate(8deg); }
+            0%, 100% { transform: rotate(-6deg); }
+            50% { transform: rotate(6deg); }
+        }
+        
+        /* Optimized Spacing */
+        .container {
+            max-width: 700px;
+        }
+        
+        .p-4 {
+            padding: 1.5rem !important;
+        }
+        
+        /* Performance Optimizations */
+        .ship-container, .btn-predict, .btn-primary, .form-control, .form-select {
+            will-change: transform, box-shadow;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .ship-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            h1.display-4 {
+                font-size: 1.8rem;
+            }
+            
+            .ship-icon {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
