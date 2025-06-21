@@ -123,12 +123,22 @@ python app.py
 # Access at http://localhost:5000
 ```
 
-### Production Deployment:
-The app can be deployed to various platforms:
-- **Heroku**: Add `Procfile` with `web: python app.py`
-- **Railway**: Direct deployment from GitHub
-- **PythonAnywhere**: Upload files and configure WSGI
-- **AWS/Azure/GCP**: Container or serverless deployment
+### Free Cloud Deployment:
+Your app is **ready for deployment** to free hosting platforms! 
+
+**Quick Deploy (Recommended):**
+```bash
+./deploy.sh
+# Follow the instructions to deploy to Railway
+```
+
+**Supported Platforms:**
+- **🌟 Railway** - Best free tier (500 hours/month)
+- **🌟 Render** - Great alternative (750 hours/month) 
+- **🌟 PythonAnywhere** - Python-optimized hosting
+- **🌟 Vercel** - Serverless deployment
+
+📖 **See `DEPLOYMENT.md` for detailed deployment guides**
 
 ## 🎭 Fun Examples to Try
 
